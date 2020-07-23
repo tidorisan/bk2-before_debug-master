@@ -24,7 +24,7 @@
 <!-- フォロワー数 -->
 	<tr>
 		<th>followers</th>
-		<th><%= link_to user.passive_relationships.count, follows_user_path(user) %></th>
+		<th><%= link_to user.passive_relationships.count, followers_user_path(user) %></th>
 	</tr>
 <!--  -->
 
@@ -50,7 +50,7 @@
 
 		<% if current_user != user %>
 
-			<!-- ここの表記注意　ここでh userがフォローされているのか？と決めている -->
+		<!-- ここの表記注意　ここでh userがフォローされているのか？と決めている -->
 			<% if user.followed_by?(current_user) %>
 
 

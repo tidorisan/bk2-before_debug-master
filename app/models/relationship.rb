@@ -8,7 +8,6 @@ class Relationship < ApplicationRecord
 # ==@== 制限した
 	# バリデーションチェック　フォロー機能　AユーザがBユーザフォロする　following_id:A, follower_id:bができるのは一回のみ
 	# validates_uniqueness_of :followe_id, scope: :user_id
-	validates :follower_id, uniqueness: { scope: :follower_id }
-	#
+	# validates :follower_id, uniqueness: { scope: :follower_id }
 
 end
