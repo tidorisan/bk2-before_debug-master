@@ -1,0 +1,80 @@
+<table class="table">
+	<!-- error sytax tr thß-->
+	<tr>
+		<th><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %></th>
+	</tr>
+
+	<tr>
+		<th>name</th>
+		<th><%= user.name %></th>
+	</tr>
+
+	<tr>
+		<th>introduction</th>
+		<th><%= user.introduction %></th>
+	</tr>
+
+<!-- フォロー数 -->
+	<tr>
+		<th>follows</th>
+		<th><%= link_to user.active_relationships.count, follows_user_path(user) %></th>
+	</tr>
+<!--  -->
+
+<!-- フォロワー数 -->
+	<tr>
+		<th>followers</th>
+		<th><%= link_to user.passive_relationships.count, follows_user_path(user) %></th>
+	</tr>
+<!--  -->
+
+<!-- フォロー機能＿フォローボタンbooks/index books/showページ以外で表示させる -->
+<!-- user[Follower モデルにログインしているユーザ.id が既に含まれている場合] -->
+<!-- ==@=== ボタンのboostrap 表示されない後で確認  リンク作ると青く見える -->
+<!-- === -->
+<!-- user[Follower モデルにログインしているユーザ.id が既に含まれていない場合] -->
+
+<!-- if文苦手 -->
+
+<!-- もし現在ログインしているユーザがこのページで紹介されるユーザをフォローしていたら-->
+<!-- 現在ユーザのid がこのページのユーザ[フォローされている]人だと考えるとこの人をフォローしている人は複数人いるその中で現在ログイnしているユーザが存在しているか確認する -->
+
+<!--  自分をフォローしないようにしているuser -->
+
+
+	<!-- フォロー機能 -->
+	<!-- もしAさんをフォローしている人の中に既に自分が存在しているか確認数 -->
+		<!-- もしuser != current_user  なら表示させる-->
+
+	<tr>
+
+		<% if current_user != user %>
+
+			<!-- ここの表記注意　ここでh userがフォローされているのか？と決めている -->
+			<% if user.followed_by?(current_user) %>
+
+
+				<th><%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-primary" %></th>
+
+
+			<% else %>
+
+
+				<th><%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-primary" %></th>
+
+
+			<% end %>
+
+		<% end %>
+		<!-- もしusercurrent_user!= -->
+
+	</tr>
+
+
+
+
+</table>
+
+<div class="row">
+	<%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
+</div>
